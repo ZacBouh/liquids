@@ -12,8 +12,8 @@ export default function DropDown({
   return (
     <>
       <label htmlFor={id}>{label}</label>
-      <select id={id} {...props}>
-        <option selected disabled>
+      <select defaultValue={"not chosen"} id={id} {...props}>
+        <option value={"not chosen"} disabled>
           choose
         </option>
         {options.map((option) => (

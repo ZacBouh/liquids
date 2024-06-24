@@ -1,4 +1,4 @@
-type InputProps = React.ComponentPropsWithRef<"input"> & {
+export type InputProps = React.ComponentPropsWithRef<"input"> & {
   label?: string;
 };
 

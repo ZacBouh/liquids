@@ -1,11 +1,14 @@
 import { Outlet } from "react-router";
 import Header from "./Components/Header";
+import { RecipesProvider } from "./lib/RecipesContext";
 
 function App() {
   return (
     <>
       <Header />
-      <Outlet />
+      <RecipesProvider>
+        <Outlet />
+      </RecipesProvider>
     </>
   );
 }

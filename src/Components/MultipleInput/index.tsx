@@ -1,17 +1,23 @@
-import { ComponentType, MouseEventHandler, useState } from "react";
+import { MouseEventHandler, useState } from "react";
+
+type MultipleInputProps = {
+  renderComponent: (name: string) => React.ReactElement;
+  maxCount: number;
+  minCount: number;
+};
 
 export default function MultipleInput({
   renderComponent,
-}: {
-  renderComponent: (
-    name: string
-  ) => React.ReactElement<React.ComponentPropsWithRef<"input">>;
-}) {
+  maxCount = 5,
+  minCount = 1,
+}: MultipleInputProps) {
   const [componentsKeys, setComponentsKeys] = useState(["0"]);
   const [availableKeys, setAvailableKeys] = useState<string[]>([]);
-  const handleAdd = () => {
+
+  const handleAdd = (event: React.MouseEvent) => {
+    event.preventDefault();
     let newInputKey: string;
-    if (componentsKeys.length > 4) return;
+    if (componentsKeys.length === maxCount) return;
     if (availableKeys.length > 0) {
       newInputKey = availableKeys[0];
       setAvailableKeys((availableKeys) => availableKeys.slice(1));
@@ -24,6 +30,7 @@ export default function MultipleInput({
   const handleDelete: MouseEventHandler = (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
+    if (componentsKeys.length === minCount) return;
     const button = event.currentTarget;
     const key = button.value;
     const keyIndex = componentsKeys.indexOf(key);
@@ -40,9 +47,11 @@ export default function MultipleInput({
       {componentsKeys.map((key) => (
         <div key={key}>
           {renderComponent(key)}
-          <button value={key} onClick={handleDelete}>
-            Del
-          </button>
+          {componentsKeys.length > minCount && (
+            <button value={key} onClick={handleDelete} className={"font-bold"}>
+              X
+            </button>
+          )}
         </div>
       ))}
     </>
