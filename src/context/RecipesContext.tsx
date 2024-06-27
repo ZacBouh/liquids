@@ -1,5 +1,5 @@
 import { ReactNode, createContext } from "react";
-import { useRecipes } from "./recipesHooks";
+import { useRecipes } from "../hooks/recipesHooks";
 
 export const RecipeContext = createContext<ReturnType<
   typeof useRecipes

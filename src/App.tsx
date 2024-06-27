@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
 import Header from "./Components/Header";
-import { RecipesProvider } from "./lib/RecipesContext";
+import { RecipesProvider } from "./context/RecipesContext";
 
 function App() {
   return (

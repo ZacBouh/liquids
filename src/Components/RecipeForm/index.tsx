@@ -2,8 +2,8 @@ import Input from "../Input";
 import DropDown from "../DropDown";
 import MultipleInput from "../MultipleInput";
 import AromaInput from "../AromaInput";
-import { Recipe } from "../../lib/Recipe";
-import { useRecipesContext } from "../../lib/recipesHooks";
+import { getRecipeFromFormEntries } from "../../lib/Models/Recipe";
+import { useRecipesContext } from "../../hooks/recipesHooks";
 
 export default function RecipeForm() {
   const { createRecipe } = useRecipesContext();
@@ -12,7 +12,8 @@ export default function RecipeForm() {
     event.preventDefault();
     const formData = new FormData(event.target as HTMLFormElement);
     const formDataObject = Object.fromEntries(formData.entries());
-    const newRecipe = Recipe.getFromFormEntries(formDataObject);
+    const newRecipe = getRecipeFromFormEntries(formDataObject);
+    console.log("sending : ", newRecipe);
     createRecipe(newRecipe);
   };
 

@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
-import { Recipe } from "./Recipe";
-import { RecipeContext } from "./RecipesContext";
+import { Recipe } from "../lib/Models/Recipe";
+import { RecipeContext } from "../context/RecipesContext";
 
 const apiUrl = new URL(import.meta.env.VITE_API_URL + "/recipes");
 

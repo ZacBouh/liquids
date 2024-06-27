@@ -1,5 +1,5 @@
 import RecipeForm from "../../Components/RecipeForm";
-import { useRecipesContext } from "../../lib/recipesHooks";
+import { useRecipesContext } from "../../hooks/recipesHooks";
 
 export default function Home() {
   const { recipes, error, loading, deleteRecipe } = useRecipesContext();
