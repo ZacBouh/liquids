@@ -22,10 +22,12 @@ export function useRecipes() {
             setRecipes(recipes);
           });
           setLoading(false);
+          setError(null);
         },
         (error) => {
           if (error.name !== "AbortError") {
             setError(error);
+            setLoading(false);
             throw new Error(`[fetchRecipes ERROR] ${error}`);
           }
         }
